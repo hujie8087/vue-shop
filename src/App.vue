@@ -10,20 +10,20 @@
     </div>
     <router-view/>
     <div id="footer" class="footer">
-      <mt-tabbar v-model="selected" fixed='true'>
-        <mt-tab-item id="home">
+      <mt-tabbar v-model="selected" fixed>
+        <mt-tab-item id="Home">
           <icon slot="icon" name="home"></icon>
           首页
         </mt-tab-item>
-        <mt-tab-item id="vip">
+        <mt-tab-item id="Vip">
           <icon slot="icon" name="vip"></icon>
           会员
         </mt-tab-item>
-        <mt-tab-item id="shopcar">
+        <mt-tab-item id="Shopcar">
           <icon slot="icon" name="shopcar"></icon>
           购物车
         </mt-tab-item>
-        <mt-tab-item id="search">
+        <mt-tab-item id="Search">
           <icon slot="icon" name="search"></icon>
           搜索
         </mt-tab-item>
@@ -39,10 +39,21 @@ export default {
         return {
             selected: ''
         }
+    },
+    watch: {
+        selected (newValue, oldValue) {
+            console.log(this.selected)
+            this.$router.push({name: this.selected})
+        }
     }
 }
 </script>
 
 <style>
-
+#header{
+  height: 40px;
+}
+#footer{
+  height: 55px;
+}
 </style>
