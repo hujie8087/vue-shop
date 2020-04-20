@@ -10,11 +10,15 @@ import Icon from 'vue-svg-icon/Icon.vue'
 import axios from 'axios'
 import './mock/topdata'
 import './mock/getNewsData'
+import Navbar from '@/components/Navbar.vue'
 
 Vue.config.productionTip = false
 Vue.use(MintUI)
 Vue.component('icon', Icon)
 Vue.prototype.axios = axios
+
+Vue.component('Navbar', Navbar)
+// 注册全局组件
 
 /* eslint-disable no-new */
 new Vue({

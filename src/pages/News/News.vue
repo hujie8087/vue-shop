@@ -1,5 +1,6 @@
 <template>
     <div class="news">
+        <Navbar title="新闻列表"></Navbar>
         <div class="news-list">
             <ul>
                 <li class="news-item" v-for="item in newsLists" :key="item.newsId">
@@ -53,12 +54,11 @@ export default {
 
 <style lang="less" scoped>
 .news{
-    width: 92%;
-    margin: 0 auto;
+    width: 100%;
     .news-list{
-        width: 100%;
+        width: 92%;
         height: auto;
-        margin-top: 20px;
+        margin: 20px auto;
         .news-item{
             position: relative;
             overflow: hidden;
