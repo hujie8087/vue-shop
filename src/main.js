@@ -7,13 +7,14 @@ import 'mint-ui/lib/style.css'
 import '../static/css/global.css'
 import MintUI from 'mint-ui'
 import Icon from 'vue-svg-icon/Icon.vue'
-import Axios from 'axios'
+import axios from 'axios'
 import './mock/topdata'
+import './mock/getNewsData'
 
 Vue.config.productionTip = false
 Vue.use(MintUI)
 Vue.component('icon', Icon)
-Vue.use(Axios)
+Vue.prototype.axios = axios
 
 /* eslint-disable no-new */
 new Vue({

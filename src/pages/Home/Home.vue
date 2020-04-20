@@ -6,10 +6,10 @@
         <div class="home-list">
             <ul>
                 <li v-for="grid in grids" :key="grid.id">
-                    <a :href="grid.img">
-                        <icon slot="icon" :name="grid.img"></icon>
+                    <router-link :to="grid.router">
+                        <icon :name="grid.img"></icon>
                         <p>{{ grid.title }}</p>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
         </div>
@@ -20,12 +20,12 @@
 import Axios from 'axios'
 
 const grids = [
-    {id: 1, title: '新闻资讯', img: 'news'},
-    {id: 2, title: '图文分享', img: 'graphic'},
-    {id: 3, title: '商品展示', img: 'products'},
-    {id: 4, title: '资讯', img: 'information'},
-    {id: 5, title: '联系我们', img: 'contact'},
-    {id: 6, title: '在线留言', img: 'feedback'}
+    {id: 1, title: '新闻资讯', router: 'news', img: 'news'},
+    {id: 2, title: '图文分享', router: 'graphic', img: 'graphic'},
+    {id: 3, title: '商品展示', router: 'products', img: 'products'},
+    {id: 4, title: '资讯', router: 'information', img: 'information'},
+    {id: 5, title: '联系我们', router: 'contact', img: 'contact'},
+    {id: 6, title: '在线留言', router: 'feedback', img: 'feedback'}
 ]
 
 export default {
