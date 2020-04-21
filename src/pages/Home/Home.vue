@@ -21,7 +21,7 @@ import Axios from 'axios'
 
 const grids = [
     {id: 1, title: '新闻资讯', router: 'news', img: 'news'},
-    {id: 2, title: '图文分享', router: 'graphic', img: 'graphic'},
+    {id: 2, title: '图文分享', router: 'photos/list/0', img: 'graphic'},
     {id: 3, title: '商品展示', router: 'products', img: 'products'},
     {id: 4, title: '资讯', router: 'information', img: 'information'},
     {id: 5, title: '联系我们', router: 'contact', img: 'contact'},

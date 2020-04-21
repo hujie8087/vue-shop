@@ -52,7 +52,24 @@ let getLunbo = Mock.mock({
     ]
 })
 
+let getPhotosList = Mock.mock({
+    'data|4': [ // 生成5条数据 数组
+        {
+            'Id|+1': 1, // 生成商品id，自增1
+            'Title': '@cname', // 生成商品名 ， 都是中国人的名字
+            'data|10': [{
+                'photosId': '@integer(0, 1000)', // 生成商品id，自增1
+                'photosMsg': '@ctitle(100)', // 生成商品信息，长度为10个汉字
+                'photosTitle': '@cname', // 生成商品名 ， 都是中国人的名字
+                'photosDate': '@date(yyyy-MM-dd)',
+                'photosImage': '@dataImage(300x250)' // 生成随机图片，大小/背景色/字体颜色/文字信息
+            }]
+        }
+    ]
+})
+
 Mock.mock('/api/getNewsData', 'post', getNewsData) // 三个参数。第一个路径，第二个请求方式post/get，第三个回调，返回值
 Mock.mock('/api/getNewsData/detail/:newsId', 'post', getNewsData)
 Mock.mock('/api/productData', 'post', productdata)
 Mock.mock('/api/getLunbo', 'post', getLunbo)
+Mock.mock('/api/getPhotosList', 'post', getPhotosList)

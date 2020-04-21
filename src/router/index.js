@@ -10,7 +10,8 @@ import Products from '@/pages/Products/Products'
 import Information from '@/pages/Information/Information'
 import Feedback from '@/pages/Feedback/Feedback'
 import Contact from '@/pages/Contact/Contact'
-import Graphic from '@/pages/Graphic/Graphic'
+import PhotosList from '@/pages/Photos/PhotosList'
+import PhotosDetail from '@/pages/Photos/PhotosDetail'
 
 Vue.use(Router)
 
@@ -51,9 +52,13 @@ export default new Router({
         name: 'products',
         component: Products
     }, {
-        path: '/graphic',
-        name: 'graphic',
-        component: Graphic
+        path: '/photos/list/:categoryId',
+        name: 'photoslist',
+        component: PhotosList
+    }, {
+        path: '/photos/detail/:photosId',
+        name: 'photosdetail',
+        component: PhotosDetail
     }, {
         path: '/information',
         name: 'information',

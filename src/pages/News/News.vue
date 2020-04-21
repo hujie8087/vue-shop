@@ -6,7 +6,7 @@
                 <li class="news-item" v-for="item in newsLists" :key="item.newsId">
                     <router-link :to="{ name:'newsDetail', params: {id: item.newsId} }">
                         <div class="news-img">
-                            <img :src="item.newsImage" alt="item.newsTitle" srcset="">
+                            <img v-lazy="item.newsImage" alt="item.newsTitle" srcset="">
                         </div>
                         <div class="news-content">
                             <div class="news-title">
@@ -45,7 +45,10 @@ export default {
             Axios.post('/api/getNewsData')
                 .then((res) => {
                     this.newsLists = res.data.data
-                    console.log(res.data.data)
+                    this.InitialLoading = false
+                    console.log(this.newsLists, this.InitialLoading)
+                }).catch((err) => {
+                    console.log('新闻列表数据获取失败', err)
                 })
         }
     }
@@ -59,6 +62,11 @@ export default {
         width: 92%;
         height: auto;
         margin: 20px auto;
+        .center{
+            display: block;
+            width: 50px;
+            margin: 0 auto;
+        }
         .news-item{
             position: relative;
             overflow: hidden;

@@ -1,14 +1,15 @@
 <template>
     <div>
-        <Navbar title="新闻详情"></Navbar>
+        <Navbar title="图文详情"></Navbar>
         <div class="news-detail">
-            <h1>{{detail.newsTitle}}</h1>
+            <h1>{{detail.photosTitle}}</h1>
             <div class="detail-copy">
-                <span class="detail-parise">点赞数：{{detail.newsParise}}</span>
-                <span class="detail-time">发布时间：{{detail.newsDate}}</span>
+                <span class="detail-parise">点赞数：{{detail.photosId}}</span>
+                <span class="detail-time">发布时间：{{detail.photosDate}}</span>
             </div>
+            <img :src="detail.photosImage" :alt="detail.photosTitle">
             <p>
-                {{detail.newsMsg}}
+                {{detail.photosMsg}}
             </p>
         </div>
     </div>
@@ -16,26 +17,35 @@
 
 <script>
 import Axios from 'axios'
+
 export default {
-    name: 'newsDetail',
+    name: 'news',
     data () {
         return {
             detail: ''
         }
     },
     created () {
-        this.getNewsLstData(this.$route.params.id)
+        let id = Number(this.$route.params.photosId)
+        console.log(id)
+        this.getPhotosList(id)
     },
     methods: {
-        getNewsLstData (id) {
-            Axios.post('/api/getNewsData')
+        getPhotosList (id) {
+            Axios.post('/api/getPhotosList')
                 .then((res) => {
-                    this.detail = res.data.data.filter(val => {
-                        return val.newsId === id
-                    })[0]
+                    let obj = res.data.data
+                    for (const key in obj) {
+                        for (const j in obj[key].data) {
+                            console.log(obj[key].data[j].photosId)
+                            if (obj[key].data[j].photosId === id) {
+                                this.detail = obj[key].data[j]
+                            }
+                        }
+                    }
                     console.log(this.detail)
                 }).catch((err) => {
-                    console.log('新闻详情异常', err)
+                    console.log('图文详情数据获取失败', err)
                 })
         }
     }

@@ -20,6 +20,10 @@ export default {
 
 <style lang="less" scoped>
 .navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -34,9 +38,9 @@ export default {
     height: 40px;
     line-height: 1;
     padding: 0 10px;
-    position: relative;
     text-align: center;
     white-space: nowrap;
+    width: 100%;
     .goback{
         -webkit-box-flex: .5;
         -ms-flex: .5;
