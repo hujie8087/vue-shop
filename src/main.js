@@ -8,8 +8,7 @@ import '../static/css/global.css'
 import MintUI from 'mint-ui'
 import Icon from 'vue-svg-icon/Icon.vue'
 import axios from 'axios'
-import './mock/topdata'
-import './mock/getNewsData'
+import './mock/mock'
 import Navbar from '@/components/Navbar.vue'
 
 Vue.config.productionTip = false
@@ -18,7 +17,6 @@ Vue.component('icon', Icon)
 Vue.prototype.axios = axios
 
 Vue.component('Navbar', Navbar)
-// 注册全局组件
 
 /* eslint-disable no-new */
 new Vue({

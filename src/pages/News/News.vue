@@ -4,7 +4,7 @@
         <div class="news-list">
             <ul>
                 <li class="news-item" v-for="item in newsLists" :key="item.newsId">
-                    <router-link to="javascript:;">
+                    <router-link :to="{ name:'newsDetail', params: {id: item.newsId} }">
                         <div class="news-img">
                             <img :src="item.newsImage" alt="item.newsTitle" srcset="">
                         </div>
@@ -45,7 +45,7 @@ export default {
             Axios.post('/api/getNewsData')
                 .then((res) => {
                     this.newsLists = res.data.data
-                    console.log(this.newsList)
+                    console.log(res.data.data)
                 })
         }
     }
@@ -97,6 +97,9 @@ export default {
                     }
                     p{
                         color:goldenrod;
+                    }
+                    .news-time{
+                        float: right;
                     }
                 }
             }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/pages/Home/Home'
 import News from '@/pages/News/News'
+import NewsDetail from '@/pages/News/NewsDetail'
 import Vip from '@/pages/Vip/Vip'
 import Shopcar from '@/pages/Shopcar/Shopcar'
 import Search from '@/pages/Search/Search'
@@ -19,6 +20,9 @@ export default new Router({
         path: '/',
         redirect: '/home'
     }, {
+        path: '',
+        redirect: '/home'
+    }, {
         path: '/home',
         name: 'home',
         component: Home
@@ -26,6 +30,10 @@ export default new Router({
         path: '/news',
         name: 'news',
         component: News
+    }, {
+        path: '/news/:id',
+        name: 'newsDetail',
+        component: NewsDetail
     }, {
         path: '/shopcar',
         name: 'shopcar',

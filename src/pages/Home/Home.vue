@@ -38,7 +38,7 @@ export default {
         }
     },
     created () {
-        Axios.post('/api/topData').then((res) => {
+        Axios.post('/api/getLunbo').then((res) => {
             this.topData = res.data.data
             let img = new Image()
             img.src = this.topData[0].newsImage
