@@ -20,10 +20,6 @@ export default {
 
 <style lang="less" scoped>
 .navbar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;

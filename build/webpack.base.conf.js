@@ -9,14 +9,14 @@ function resolve(dir) {
 }
 
 const createLintingRule = () => ({
-    test: /\.(js|vue)$/,
+    /*test: /\.(js|vue)$/,
     loader: 'eslint-loader',
     enforce: 'pre',
     include: [resolve('src'), resolve('test')],
     options: {
         formatter: require('eslint-friendly-formatter'),
         emitWarning: !config.dev.showEslintErrorsInOverlay
-    }
+    }*/
 })
 
 module.exports = {
@@ -28,8 +28,7 @@ module.exports = {
         path: config.build.assetsRoot,
         filename: '[name].js',
         publicPath: process.env.NODE_ENV === 'production' ?
-            config.build.assetsPublicPath :
-            config.dev.assetsPublicPath
+            config.build.assetsPublicPath : config.dev.assetsPublicPath
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -56,7 +55,7 @@ module.exports = {
                 loader: 'svg-sprite-loader',
                 include: [resolve('src/icons')],
                 options: {
-                  symbolId: 'icon-[name]'
+                    symbolId: 'icon-[name]'
                 }
             },
             {

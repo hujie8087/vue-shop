@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Header></Header>
         <mt-swipe :auto="4000" :style="{'height': imgInfo.height + 'px'}">
             <mt-swipe-item v-for="data in topData" :key="data.id"><img :src="data.newsImage" :alt="data.newsName" srcset=""></mt-swipe-item>
         </mt-swipe>
@@ -18,18 +19,27 @@
 
 <script>
 import Axios from 'axios'
+import Header from '@/components/Header.vue'
 
 const grids = [
-    {id: 1, title: '新闻资讯', router: 'news', img: 'news'},
-    {id: 2, title: '图文分享', router: 'photos/list/0', img: 'graphic'},
-    {id: 3, title: '商品展示', router: 'products', img: 'products'},
-    {id: 4, title: '资讯', router: 'information', img: 'information'},
-    {id: 5, title: '联系我们', router: 'contact', img: 'contact'},
-    {id: 6, title: '在线留言', router: 'feedback', img: 'feedback'}
+    {id: 1, title: '新闻资讯', router: {name: 'news'}, img: 'news'},
+    {id: 2,
+        title: '图文分享',
+        router:
+            {name: 'photo.list', params: {categoryId: 0}
+            },
+        img: 'graphic'},
+    {id: 3, title: '商品展示', router: {name: 'products'}, img: 'products'},
+    {id: 4, title: '资讯', router: {name: 'information'}, img: 'information'},
+    {id: 5, title: '联系我们', router: {name: 'contact'}, img: 'contact'},
+    {id: 6, title: '在线留言', router: {name: 'feedback'}, img: 'feedback'}
 ]
 
 export default {
     name: 'home',
+    components: {
+        Header
+    },
     data () {
         return {
             topData: [],

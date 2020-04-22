@@ -13,17 +13,17 @@ import Contact from '@/pages/Contact/Contact'
 import PhotosList from '@/pages/Photos/PhotosList'
 import PhotosDetail from '@/pages/Photos/PhotosDetail'
 
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location, onResolve, onReject) {
+    if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+    return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(Router)
 
 export default new Router({
-    mode: 'history',
+    mode: 'hash',
     routes: [{
-        path: '/',
-        redirect: '/home'
-    }, {
-        path: '',
-        redirect: '/home'
-    }, {
         path: '/home',
         name: 'home',
         component: Home
@@ -53,7 +53,7 @@ export default new Router({
         component: Products
     }, {
         path: '/photos/list/:categoryId',
-        name: 'photoslist',
+        name: 'photo.list',
         component: PhotosList
     }, {
         path: '/photos/detail/:photosId',
@@ -71,5 +71,13 @@ export default new Router({
         path: '/contact',
         name: 'contact',
         component: Contact
+    }, {
+        path: '/',
+        redirect: '/home',
+        component: Home
+    }, {
+        path: '*',
+        redirect: '/home',
+        component: Home
     }]
 })

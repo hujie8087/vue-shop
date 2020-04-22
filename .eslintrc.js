@@ -25,6 +25,7 @@ module.exports = {
         "eol-last": 0,
         // allow async-await
         'generator-star-spacing': 'off',
+        'space-before-function-paren': 'OFF',
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     }

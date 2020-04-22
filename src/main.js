@@ -7,16 +7,19 @@ import 'mint-ui/lib/style.css'
 import '../static/css/global.css'
 import MintUI from 'mint-ui'
 import Icon from 'vue-svg-icon/Icon.vue'
-import axios from 'axios'
+import Axios from 'axios'
 import './mock/mock'
 import Navbar from '@/components/Navbar.vue'
+import Header from '@/components/Header.vue'
 
 Vue.config.productionTip = false
 Vue.use(MintUI)
 Vue.component('icon', Icon)
-Vue.prototype.axios = axios
+
+Vue.prototype.$axios = Axios
 
 Vue.component('Navbar', Navbar)
+Vue.component('Header', Header)
 
 /* eslint-disable no-new */
 new Vue({

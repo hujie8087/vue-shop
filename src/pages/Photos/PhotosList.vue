@@ -1,10 +1,11 @@
 <template>
     <div>
+        <Navbar title="图文详情"></Navbar>
         <div class="category-list">
             <ul>
-                <router-link tag="li"  v-for="category in categoryList" :key="category.Id" :to="{ name:'photoslist', params: {categoryId: category.Id} }" @click.native="getlist(category.Id)">
-                <a>{{ category.Title }}</a>
-                </router-link>
+                <li v-for="(category,index) in categoryList" :key="category.categoryId" @click="getlist(category.categoryId,index)">
+                    <a href="javascript:;" :class="{active:category.categoryId === selected}">{{ category.Title }}</a>
+                </li>
             </ul>
         </div>
         <div class="potos-list">
@@ -27,7 +28,7 @@
 import Axios from 'axios'
 
 export default {
-    name: 'photoslist',
+    name: 'photo.list',
     data () {
         return {
             categoryList: '',
@@ -35,30 +36,45 @@ export default {
             selected: ''
         }
     },
+    beforeRouteEnter (to, from, next) {
+        console.log(to)
+        next(vm => {
+            vm.getPhotosList(to.params.categoryId)
+            vm.getCategoryList()
+        })
+    },
+    beforeRouteUpdate (to, from, next) {
+        console.log(to)
+        // this.selected = to.params.categoryId
+        next()
+    },
     created () {
-        this.getPhotosList(this.$route.params.categoryId)
+        this.selected = Number(this.$route.params.categoryId)
     },
     methods: {
-        getPhotosList (id) {
-            Axios.post('/api/getPhotosList')
+        getCategoryList () {
+            Axios.post('/api/getPhotos')
                 .then((res) => {
                     // 获取类别标题
                     this.categoryList = res.data.data
-                    let arr1 = res.data.data.map(val => {
-                        return val.data
-                    })
-                    // map()返回的是一个二维数组，需要合并
-                    this.photosLists = this.flatten(arr1)
+                    this.categoryList.unshift({'categoryId': 0, 'Title': '全部'})
                 }).catch((err) => {
                     console.log('图文分享列表数据获取失败', err)
                 })
         },
-        getlist (id) {
-            this.photosLists = this.categoryList[id - 1].data
+        getPhotosList (id) {
+            Axios.post('/api/getPhotosList/' + id)
+                .then((res) => {
+                    // 获取类别标题
+                    this.photosLists = res.data.data
+                }).catch((err) => {
+                    console.log('图文分享列表数据获取失败', err)
+                })
         },
-        // 合并多维数组的方法
-        flatten (arr) {
-            return [].concat(...arr.map(x => Array.isArray(x) ? this.flatten(x) : x))
+        getlist (id, index) {
+            // console.log(id, index)
+            this.$router.push({name: 'photo.list', params: {categoryId: id}})
+            this.selected = index
         }
     }
 }
@@ -69,6 +85,8 @@ export default {
     width: 100%;
     height: 40px;
     line-height: 40px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 10px;
     ul{
         width: 100%;
         overflow: hidden;
@@ -85,9 +103,9 @@ export default {
                 display: block;
                 color: #333333;
                 }
-        }
-        .router-link-active a{
-            color: #26a2ff;
+            .active{
+                color: #26a2ff;
+            }
         }
     }
 }

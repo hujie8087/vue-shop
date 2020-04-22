@@ -1,15 +1,5 @@
 <template>
   <div id="app">
-    <!-- 头部 -->
-    <div id="header" class="header">
-      <mt-header title="首页" class="header" fixed >
-        <router-link to="/" slot="left">
-          <mt-button icon="back">返回</mt-button>
-        </router-link>
-        <mt-button icon="more" slot="right"></mt-button>
-      </mt-header>
-    </div>
-
     <!-- 内容区 -->
     <router-view/>
 
@@ -59,9 +49,6 @@ export default {
 </script>
 
 <style>
-#header{
-  height: 40px;
-}
 #footer{
   height: 55px;
 }
